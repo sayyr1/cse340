@@ -1,5 +1,6 @@
 const requestHandler = (req, res) =>{
     const url = req.url;
+    const method = req.method;
 
     if (url === '/') {
         // return a code when it is / path
@@ -10,7 +11,7 @@ const requestHandler = (req, res) =>{
         res.write('<form action="/users" method="POST">Name = <input type="text" name="name"> LastName = <input type="text" name="lastname">Username = <input type="text" name="username"><button type="submit">Send</button></form>')
         res.write('</body>');
         res.write('</html>')
-
+        return res.end;
     }
 
     if (url === '/users') {
@@ -36,6 +37,7 @@ const requestHandler = (req, res) =>{
         res.write(`<ul><li> Name = ${name}</li> <li> Lastname = ${lastname}</li><li> Username = ${username}</li></ul>`)
         res.write('</body>')
         res.write('</html>');
+        return res.end;
     })
     }
 
@@ -52,10 +54,5 @@ const requestHandler = (req, res) =>{
             console.log(usersInformation)
             console.log(parseBody)
         })
-    }
-
-
-
-
-}
-module.exports = requestHandler;
+    }}
+    module.exports = requestHandler;
